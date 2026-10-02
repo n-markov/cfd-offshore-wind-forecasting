@@ -52,11 +52,11 @@ Test period: September 2025 to August 2026 (mean daily generation about 51,300 M
 
 ## Findings
 
-1. **The input mattered more than the algorithm.** Adding wind speed to a straight line removed 63% of persistence error. Curvature and gradient boosting added a further 10–13% each.
-2. **The cube law only holds below rated speed.** Cubing the daily mean wind speed was a *weaker* predictor (r = 0.81) than the mean itself (r = 0.94), because output plateaus once turbines reach rated power. However, the mean of *hourly* cubed wind added information alongside the mean, by distinguishing steady days from gusty ones.
+1. **The input mattered more than the algorithm.** Adding wind speed to a straight line removed 63% of persistence error. Adding curvature (wind²) cut a further 10%, and gradient boosting a further 13%.
+2. **The cube law only holds below rated speed.** The mean of hourly cubed wind speed correlated less strongly with generation (r = 0.81) than mean wind speed (r = 0.94), because output plateaus once turbines reach rated power. Combined with the mean, however, it added information by distinguishing steady days from gusty ones.
 3. **Yesterday's output adds nothing once today's wind is known.** Persistence only works as a proxy for weather. Permutation importance for lagged generation was about zero.
 4. **A traceable distribution shift.** The model under-forecast windy days in the test year by up to about 5,400 MWh. Comparing output within wind-speed bands showed high-wind output rose about 6,000 MWh/day after 2023–24, and about 80% of that came from **Hornsea 1**, which ran at roughly 68% of its peak on windy days in 2023–24 against about 86% afterwards. Training only on the recent regime cut MAE by 13%, despite using half the data.
-5. **Market conditions affect output, not just weather.** The largest over-forecast (13 June 2026: 75,900 MWh forecast, 53,000 actual) fell on a windy summer Saturday with nine consecutive hours of negative prices. CfD negative-pricing rules differ by contract: the 2014 Investment Contracts, about 70% of this fleet, are unaffected, while AR1–3 contracts receive no payment after six consecutive negative hours. The rules alone therefore can't explain the full shortfall, and curtailment or operator response to negative prices are likely contributors.
+5. **Market conditions affect output, not just weather.** The largest over-forecast (13 June 2026: 75,900 MWh forecast, 53,000 actual) fell on a windy summer Saturday with nine consecutive hours of negative prices. CfD negative-pricing rules differ by contract: the 2014 Investment Contracts, about two-thirds of this fleet by capacity, are unaffected, while contracts allocated from 2016, such as Triton Knoll (AR2), receive no payment for runs of six or more consecutive negative hours. The rules alone therefore can't explain the full shortfall, and curtailment or operator response to negative prices are likely contributors.
 
 ## Limitations
 
